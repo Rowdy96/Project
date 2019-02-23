@@ -1,0 +1,36 @@
+<div class="col-md-5">
+  <div class="panel panel-primary">
+    <div class="panel-heading"  (click)="onClick()">
+            <h4>Student List:</h4>
+    </div>
+    <div *ngIf='selectList'>
+        <div class="panel-body" *ngFor="let Student of Students">
+            <ul>
+                <li [class.selected]="students === selectedStudent" (click)="onSelect(Student)">
+                  <span class="badge">{{Student.Id}}</span> {{Student.FirstName}} {{Student.LastName}}
+                </li>
+            </ul>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="col-md-7" *ngIf="selectedStudent">
+    <div class="panel panel-primary">
+        <div class="panel-heading ">
+            <h4>{{selectedStudent.FirstName | uppercase}}'s Details</h4>
+        </div>
+         <div class="panel-body">
+            <div><label>Id:</label> {{selectedStudent.Id}}</div>
+            <div><label>Name:</label> {{selectedStudent.FirstName}} {{selectedStudent.LastName}}</div>
+            <div class="form-group">
+              <label>Email:</label> 
+              <input type="email" placeholder="abcd@gmail.com" class="form-control" [(ngModel)]="selectedStudent.Email">
+            </div>
+         </div>
+         <div class="panel-footer">
+              <button class="btn btn-success">Save</button>
+         </div>
+      </div>
+      {{selectedStudent.Email}}
+</div>
